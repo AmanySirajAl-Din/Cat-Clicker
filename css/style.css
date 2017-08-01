@@ -16,25 +16,36 @@ body {
     font-family: 'Droid Serif', serif;
 }
 
+img {
+    width: 100%;
+}
+
 .container {
     padding: 20px;
+}
+
+.cat-container {
+    display: inline-block;
+    width: 40%;
+    margin: 20px;
+    vertical-align: middle;
 }
 
 .cat-img {
     position: relative;
     cursor: pointer;
 }
+
 .cat-up {
-    -moz-box-shadow: 4px 5px 4px rgba(0, 0, 0,0.5);
+    -moz-box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 4px 5px 4px rgba(0, 0, 0, .5);
     box-shadow: 4px 5px 4px rgba(0, 0, 0, .5);
 }
 
-.click-num{
+.click-num {
     background-color: #e0ac55;
     padding: 10px 20px;
-    -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+    -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
     box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
-    
 }
