@@ -1,3 +1,11 @@
+// Add cat names Dynamicaly
+var cat_names = ["Bosy", "Misho"];
+
+$(".cat-name").each(function(i){
+    $(this).text(cat_names[i]);
+});
+
+// represent the numer of clicks
 var click_num = Number($(".click-num").text());
 $(".cat-img").click(function(){
     click_num++;
@@ -16,4 +24,5 @@ $(".cat-img").click(function(){
         "left": "0"
     });
     $(this).addClass("cat-up");
-})
+});
+
