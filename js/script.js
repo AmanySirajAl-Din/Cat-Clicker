@@ -3,12 +3,26 @@ var catNames = ["Bosy", "Misho", "Mared", "Bisho", "Noor", "Boby"];
 var CatItem;
 
 // add cats to the side list dynimacally
-for(var i=0; i<catNames.length; i++){
-    CatItem = '<div class="cat-list-container cat-Btn cat-up">';
+for (var i = 0; i < catNames.length; i++) {
+    CatItem = '<div id="' + catNames[i] + '" class="cat-list-container cat-Btn cat-up">';
     CatItem += '<h4 class="cat-name-list">' + catNames[i] + '</h4>';
     CatItem += '<img src="img/' + catNames[i] + '.jpg" />';
     CatItem += '</div>';
     $(".cats-list").append(CatItem);
+}
+
+// add cats to the show area
+// when clicking a cat on the list
+$(".cat-list-container").on("click", clickCatListed);
+
+function clickCatListed() {
+    $(this).off("click", clickCatListed);
+    $(this).removeClass("cat-Btn");
+    CatItem = '<div class="cat-container">';
+    CatItem += '<h3 class="cat-name">' + $(this).attr("id") + '</h3>';
+    CatItem += '<img class="cat-img cat-Btn cat-up" src="img/' + $(this).attr("id") + '.jpg" />';
+    CatItem += '</div>';
+    $(".active-cats").append(CatItem);
 }
 
 // represent the numer of clicks
