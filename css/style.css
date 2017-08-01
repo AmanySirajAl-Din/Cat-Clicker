@@ -1,13 +1,25 @@
-body{
+@font-face {
+    font-family: 'Droid Serif';
+    src: url('../fonts/Droid_Serif/DroidSerif.ttf');
+}
+
+@font-face {
+    font-family: 'Droid Serif Italic';
+    src: url('../fonts/Droid_Serif/DroidSerif-Italic.ttf');
+}
+
+body {
     width: 80%;
     height: 100%;
     text-align: center;
     margin: auto;
+    font-family: 'Droid Serif', serif;
 }
 
-.container{
+.container {
     padding: 20px;
 }
-.cat-img{
+
+.cat-img {
     cursor: pointer;
 }
