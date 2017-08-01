@@ -21,8 +21,15 @@ body {
 }
 
 .cat-img {
+    position: relative;
     cursor: pointer;
 }
+.cat-up {
+    -moz-box-shadow: 4px 5px 4px rgba(0, 0, 0,0.5);
+    -webkit-box-shadow: 4px 5px 4px rgba(0, 0, 0, .5);
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, .5);
+}
+
 .click-num{
     background-color: #e0ac55;
     padding: 10px 20px;
