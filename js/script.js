@@ -2,10 +2,14 @@
 var catNames = ["Bosy", "Misho", "Mared", "Bisho", "Noor", "Boby"];
 // Sort the names of the cats
 catNames = catNames.sort();
-var CatItem;
+
+var numOfClicks = [],
+    CatItem;
 
 // add cats to the side list dynimacally
 for (var i = 0; i < catNames.length; i++) {
+    // make an array for # of clicks for each cat
+    numOfClicks[i] = 0;
     CatItem = '<div id="' + i + '" class="cat-list-container cat-Btn cat-up">';
     CatItem += '<h4 class="cat-name-list">' + catNames[i] + '</h4>';
     CatItem += '<img src="img/' + catNames[i] + '.jpg" />';
