@@ -1,9 +1,10 @@
 // Add cat names Dynamicaly
-var catNames = ["Bosy", "Misho", "Mared", "Bisho", "Noor", "Boby"];
+var catNames = ["Bosy", "Misho", "Mared", "Bisho", "Boby"];
 // Sort the names of the cats
 catNames = catNames.sort();
 
 var numOfClicks = [],
+    activeCatID = 0,
     CatItem;
 
 // add cats to the side list dynimacally
@@ -15,6 +16,10 @@ for (var i = 0; i < catNames.length; i++) {
     CatItem += '<img src="img/' + catNames[i] + '.jpg" />';
     CatItem += '</div>';
     $(".cats-list").append(CatItem);
+    if(i == 0){
+        $(".active-cat-img").attr("src", "img/" + catNames[i] + ".jpg");
+        $(".click-num").text(numOfClicks[i]);
+    }
 }
 
 // add cats to the show area
@@ -22,24 +27,17 @@ for (var i = 0; i < catNames.length; i++) {
 $(".cat-list-container").on("click", clickCatListed);
 
 function clickCatListed() {
-     $(this).off("click", clickCatListed);
-     $(this).removeClass("cat-Btn");
-    CatItem = '<div class="cat-container">';
-    CatItem += '<h3 class="cat-name">' + $(this).attr("id") + '</h3>';
-    CatItem += '<img class="cat-img cat-Btn cat-up" src="img/' + $(this).attr("id") + '.jpg" />';
-    CatItem += '</div>';
-    $(".active-cats").append(CatItem);
-
+    activeCatID = $(this).attr("id");
+    $(".active-cat-img").attr("src", "img/" + catNames[activeCatID] + ".jpg");
+    $(".click-num").text(numOfClicks[activeCatID]);
 }
 
 // represent the numer of clicks
-var clickNum = Number($(".click-num").text());
-$(".cat-img").click(catClicked);
+$(".active-cat-img").click(catClicked);
 
 function catClicked() {
-    console.log("meow")
-    clickNum++;
-    $(".click-num").text(clickNum);
+    numOfClicks[activeCatID]++;
+    $(".click-num").text(numOfClicks[activeCatID]);
 }
 
 $(".cat-Btn").mousedown(catMousedown);
