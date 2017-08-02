@@ -150,7 +150,8 @@ var catListVeiw = {
     },
 };
 
-
+// make it go!
+octopus.init();
 
 /*
 // Add cat names Dynamicaly
