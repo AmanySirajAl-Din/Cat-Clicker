@@ -4,7 +4,7 @@ var CatItem;
 
 // add cats to the side list dynimacally
 for (var i = 0; i < catNames.length; i++) {
-    CatItem = '<div id="' + catNames[i] + '" class="cat-list-container cat-Btn cat-up">';
+    CatItem = '<div id="' + i + '" class="cat-list-container cat-Btn cat-up">';
     CatItem += '<h4 class="cat-name-list">' + catNames[i] + '</h4>';
     CatItem += '<img src="img/' + catNames[i] + '.jpg" />';
     CatItem += '</div>';
@@ -28,7 +28,7 @@ function clickCatListed() {
 
 // represent the numer of clicks
 var clickNum = Number($(".click-num").text());
-$(".cat-container").click(catClicked);
+$(".cat-img").click(catClicked);
 
 function catClicked() {
     console.log("meow")
