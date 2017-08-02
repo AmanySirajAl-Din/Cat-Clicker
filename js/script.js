@@ -1,7 +1,7 @@
 /* ======= Model ======= */
 
 var model = {
-    activeCat: null,
+    activeCat: null, // the currently-selected cat
     catsObjArray: [
         {
             numOfClicks: 0,
@@ -38,10 +38,10 @@ var octopus = {
     init: function () {
         // put the first cat on model.activeCat Obj
         // to be showen in my page
-        model.activeCat = model.catsObjArray[0];
+        model.activeCat = model.catsObjArray[0]; 
 
         // Here will be the View init
-
+        catView.init();
     },
 
     // get the data from the model
@@ -53,7 +53,12 @@ var octopus = {
         return model.catsObjArray;
     },
 
-
+    // increments the counter for the currently-selected cat
+    incrementCounter: function() {
+        model.activeCat.numOfClicks++;
+        // update the click-num text on the page
+        catView.render(); 
+    }
 };
 
 
@@ -66,7 +71,7 @@ var catView = { // for the active cat section
         $(".active-cat-img").on("click", function () {
             // increase cat's numOfClicks (in Model) 
             // then use Octopus fun
-
+            octopus.incrementCounter();
         });
         
         // render this view (update the DOM elements with the right values)
