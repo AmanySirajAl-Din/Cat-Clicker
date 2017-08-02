@@ -1,5 +1,6 @@
 // Add cat names Dynamicaly
 var catNames = ["Bosy", "Misho", "Mared", "Bisho", "Noor", "Boby"];
+// Sort the names of the cats
 catNames = catNames.sort();
 var CatItem;
 
