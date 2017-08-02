@@ -17,6 +17,10 @@ then to count the number of clickes for each cat in a list
 To make my code professional and organized use:
 MVO (Model View Octopus)
 
+The Final Changed Requirment:
+
+Add Admin mode
+By it you can add new cats
 
 Terms:-
 MVO (Model View Octopus)
