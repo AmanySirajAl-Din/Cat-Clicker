@@ -60,9 +60,9 @@ var octopus = {
         // update the click-num text on the page
         catView.render();
     },
-
+    
     // set the currently-selected cat to the object passed in
-    setActiveCat: function (cat) {
+    setActiveCat: function(cat) {
         model.activeCat = cat;
     }
 };
