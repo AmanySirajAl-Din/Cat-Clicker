@@ -1,3 +1,6 @@
+
+
+/*
 // Add cat names Dynamicaly
 var catNames = ["Bosy", "Misho", "Mared", "Bisho", "Boby"];
 // Sort the names of the cats
@@ -58,3 +61,4 @@ function catMouseup() {
     });
     $(this).addClass("cat-up");
 }
+*/
