@@ -1,4 +1,20 @@
+/* ======= Model ======= */
 
+var model = {
+    
+};
+
+var octopus = {
+    
+};
+
+var catView = {
+    
+};
+
+var catListVeiw = {
+    
+};
 
 /*
 // Add cat names Dynamicaly
