@@ -21,14 +21,38 @@ var model = {
         },
         {
             numOfClicks : 0,
-            name : "Bisho"
+            name : "Misho"
         }
     ]
 };
 
+
+/* ======= Octopus ======= */
+
 var octopus = {
+    init: function(){
+        // put the first cat on model.activeCat Obj
+        // to be showen in my page
+        model.activeCat = model.catsObjArray[0];
+        
+        // Here will be the View init
+        
+    },
+    
+    // get the data from the model
+    getActiveCat: function(){
+        return model.activeCat;
+    },
+    
+    getCatsObjArray: function(){
+        return model.catsObjArray;
+    },
+    
     
 };
+
+
+/* ======= View ======= */
 
 var catView = {
     
