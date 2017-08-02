@@ -38,9 +38,10 @@ var octopus = {
     init: function () {
         // put the first cat on model.activeCat Obj
         // to be showen in my page
-        model.activeCat = model.catsObjArray[0]; 
+        model.activeCat = model.catsObjArray[0];
 
         // Here will be the View init
+        catListVeiw.render();
         catView.init();
     },
 
@@ -54,10 +55,15 @@ var octopus = {
     },
 
     // increments the counter for the currently-selected cat
-    incrementCounter: function() {
+    incrementCounter: function () {
         model.activeCat.numOfClicks++;
         // update the click-num text on the page
-        catView.render(); 
+        catView.render();
+    },
+
+    // set the currently-selected cat to the object passed in
+    setActiveCat: function (cat) {
+        model.activeCat = cat;
     }
 };
 
@@ -70,16 +76,15 @@ var catView = { // for the active cat section
         // click event for the cat image
         $(".active-cat-img").on("click", function () {
             // increase cat's numOfClicks (in Model) 
-            // then use Octopus fun
+            // So, Use octopus fun to make this connection
             octopus.incrementCounter();
         });
-        
+
         // render this view (update the DOM elements with the right values)
         this.render();
     },
 
     render: function () {
-        var imgSrcPart1 = "",
         // update the DOM elements with values from the current cat
         // first, get the active cat to get its values
         var activeCat = octopus.getActiveCat();
@@ -94,8 +99,58 @@ var catView = { // for the active cat section
 };
 
 var catListVeiw = {
+    render: function () {
+        var cat, CatListItem;
+        // first, I need the Model catsObjArray to render my list
+        // So, Use octopus fun to make this connection
+        var catsObjArray = octopus.getCatsObjArray();
 
+        // loop over the cats
+        for (var i = 0; i < catsObjArray.length; i++) {
+            // this is the cat we're currently looping over
+            cat = catsObjArray[i];
+            // make a new cat list item and set its text
+            CatListItem = '<div id="cat' + i + '" class="cat-list-container cat-Btn cat-up">';
+            CatListItem += '<h4 class="cat-name-list">' + cat.name + '</h4>';
+            CatListItem += '<img src="' + cat.imgSrc + '" />';
+            CatListItem += '</div>';
+            $(".cats-list").append(CatListItem);
+
+            // on click, setCurrentCat and render the catView
+            // (this uses our closure-in-a-loop trick to connect the value
+            //  of the cat variable to the click event function)
+            $("#cat" + i).on('click', (function (catCopy) {
+                return function () {
+                    // need to change the active cat in Model
+                    // So, Use octopus fun to make this connection
+                    octopus.setActiveCat(catCopy);
+                    // Update the cat view to the clicked cat from the list
+                    catView.render();
+                };
+            })(cat));
+        }
+        $(".cat-Btn").mousedown(catMousedown);
+
+        function catMousedown() {
+            $(this).css({
+                "top": "5px",
+                "left": "4px"
+            });
+            $(this).removeClass("cat-up");
+        }
+        $(".cat-Btn").mouseup(catMouseup);
+
+        function catMouseup() {
+            $(this).css({
+                "top": "0",
+                "left": "0"
+            });
+            $(this).addClass("cat-up");
+        }
+    },
 };
+
+
 
 /*
 // Add cat names Dynamicaly
@@ -105,17 +160,17 @@ catNames = catNames.sort();
 
 var numOfClicks = [],
     activeCatID = 0,
-    CatItem;
+    CatListItem;
 
 // add cats to the side list dynimacally
 for (var i = 0; i < catNames.length; i++) {
     // make an array for # of clicks for each cat
     numOfClicks[i] = 0;
-    CatItem = '<div id="' + i + '" class="cat-list-container cat-Btn cat-up">';
-    CatItem += '<h4 class="cat-name-list">' + catNames[i] + '</h4>';
-    CatItem += '<img src="img/' + catNames[i] + '.jpg" />';
-    CatItem += '</div>';
-    $(".cats-list").append(CatItem);
+    CatListItem = '<div id="' + i + '" class="cat-list-container cat-Btn cat-up">';
+    CatListItem += '<h4 class="cat-name-list">' + catNames[i] + '</h4>';
+    CatListItem += '<img src="img/' + catNames[i] + '.jpg" />';
+    CatListItem += '</div>';
+    $(".cats-list").append(CatListItem);
     if(i == 0){
         $(".active-cat-img").attr("src", "img/" + catNames[i] + ".jpg");
         $(".click-num").text(numOfClicks[i]);
