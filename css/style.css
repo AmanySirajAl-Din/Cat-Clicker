@@ -30,16 +30,19 @@ img {
 .cats-list{
     width: 15%;
 }
-
-.show-cats-div{
+.cat-name-list{
+    position: relative;
+    margin: 0;
+    color:white;
+    background-color: #e0ac55;
+    z-index: 1;
+}
+.show-cats{
     width: 75%;
 }
 
-.cat-container {
-    display: inline-block;
-    width: 40%;
-    margin: 20px;
-    vertical-align: middle;
+.active-cat-img{
+    width: 70%;
 }
 
 .cat-Btn {
