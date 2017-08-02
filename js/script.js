@@ -38,7 +38,7 @@ var octopus = {
     init: function () {
         // put the first cat on model.activeCat Obj
         // to be showen in my page
-        model.activeCat = model.catsObjArray[0]; 
+        model.activeCat = model.catsObjArray[0];
 
         // Here will be the View init
         catView.init();
@@ -54,10 +54,16 @@ var octopus = {
     },
 
     // increments the counter for the currently-selected cat
-    incrementCounter: function() {
+    incrementCounter: function () {
         model.activeCat.numOfClicks++;
         // update the click-num text on the page
-        catView.render(); 
+        catView.render();
+        catListVeiw.render();
+    },
+    
+    // set the currently-selected cat to the object passed in
+    setActiveCat: function(cat) {
+        model.activeCat = cat;
     }
 };
 
@@ -70,16 +76,15 @@ var catView = { // for the active cat section
         // click event for the cat image
         $(".active-cat-img").on("click", function () {
             // increase cat's numOfClicks (in Model) 
-            // then use Octopus fun
+            // So, Use octopus fun to make this connection
             octopus.incrementCounter();
         });
-        
+
         // render this view (update the DOM elements with the right values)
         this.render();
     },
 
     render: function () {
-        var imgSrcPart1 = "",
         // update the DOM elements with values from the current cat
         // first, get the active cat to get its values
         var activeCat = octopus.getActiveCat();
@@ -94,7 +99,37 @@ var catView = { // for the active cat section
 };
 
 var catListVeiw = {
+    render: function () {
+        var cat, listItem;
+        // first, I need the Model catsObjArray to render my list
+        // So, Use octopus fun to make this connection
+        var catsObjArray = octopus.getCatsObjArray();
 
+        // loop over the cats
+        for (var i = 0; i < catNames.length; i++) {
+            // this is the cat we're currently looping over
+            cat = cats[i];
+            // make a new cat list item and set its text
+            listItem = document.createElement('div');
+            listItem.textContent = cat.name;
+            
+            // on click, setCurrentCat and render the catView
+            // (this uses our closure-in-a-loop trick to connect the value
+            //  of the cat variable to the click event function)
+            listItem.addEventListener('click', (function(catCopy) {
+                return function() {
+                    // need to change the active cat in Model
+                    // So, Use octopus fun to make this connection
+                    octopus.setActiveCat(catCopy);
+                    // Update the cat view to the clicked cat from the list
+                    catListVeiw.render();
+                };
+            })(cat));
+
+            // finally, add the element to the list
+            $(".cats-list").append(listItem);
+        }
+    },
 };
 
 /*
