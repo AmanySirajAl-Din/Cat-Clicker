@@ -1,7 +1,29 @@
 /* ======= Model ======= */
 
 var model = {
-    
+    activeCat: null,
+    catsObjArray:[
+        {
+            numOfClicks : 0,
+            name : "Bisho"
+        },
+        {
+            numOfClicks : 0,
+            name : "Boby"
+        },
+        {
+            numOfClicks : 0,
+            name : "Bosy"
+        },
+        {
+            numOfClicks : 0,
+            name : "Mared"
+        },
+        {
+            numOfClicks : 0,
+            name : "Bisho"
+        }
+    ]
 };
 
 var octopus = {
