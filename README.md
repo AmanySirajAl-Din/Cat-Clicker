@@ -2,6 +2,8 @@ Udacity Full Stack Nanodgree Assignment
 Part 4: The Frontend: JavaScript & AJAX
 Lesson 3: Changing Expectations
 
+Count the number of clicks on the cute cat photo.
+How hard it can be when changing the requirements of an app with and without organizational code.
 It's just a trial app for testing how changing the requirements of an app could be difficult without organizational code.
 
 Description:-
