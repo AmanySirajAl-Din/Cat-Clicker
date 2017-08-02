@@ -16,32 +16,41 @@ for (var i = 0; i < catNames.length; i++) {
 $(".cat-list-container").on("click", clickCatListed);
 
 function clickCatListed() {
-    $(this).off("click", clickCatListed);
-    $(this).removeClass("cat-Btn");
+     $(this).off("click", clickCatListed);
+     $(this).removeClass("cat-Btn");
     CatItem = '<div class="cat-container">';
     CatItem += '<h3 class="cat-name">' + $(this).attr("id") + '</h3>';
     CatItem += '<img class="cat-img cat-Btn cat-up" src="img/' + $(this).attr("id") + '.jpg" />';
     CatItem += '</div>';
     $(".active-cats").append(CatItem);
+
 }
 
 // represent the numer of clicks
 var clickNum = Number($(".click-num").text());
-$(".cat-img").click(function () {
+$(".cat-container").click(catClicked);
+
+function catClicked() {
+    console.log("meow")
     clickNum++;
     $(".click-num").text(clickNum);
-});
-$(".cat-Btn").mousedown(function () {
-        $(this).css({
-            "top": "5px",
-            "left": "4px"
-        });
-        $(this).removeClass("cat-up");
-    })
-    .mouseup(function () {
-        $(this).css({
-            "top": "0",
-            "left": "0"
-        });
-        $(this).addClass("cat-up");
+}
+
+$(".cat-Btn").mousedown(catMousedown);
+
+function catMousedown() {
+    $(this).css({
+        "top": "5px",
+        "left": "4px"
     });
+    $(this).removeClass("cat-up");
+}
+$(".cat-Btn").mouseup(catMouseup);
+
+function catMouseup() {
+    $(this).css({
+        "top": "0",
+        "left": "0"
+    });
+    $(this).addClass("cat-up");
+}
