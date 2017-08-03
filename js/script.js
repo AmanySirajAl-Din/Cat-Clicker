@@ -1,6 +1,7 @@
 /* ======= Model ======= */
 
 var model = {
+    adminMode: false,
     activeCat: null, // the currently-selected cat
     catsObjArray: [
         {
@@ -43,6 +44,7 @@ var octopus = {
         // Here will be the View init
         catListVeiw.render();
         catView.init();
+        adminView.init();
     },
 
     // get the data from the model
@@ -60,11 +62,35 @@ var octopus = {
         // update the click-num text on the page
         catView.render();
     },
-    
+
     // set the currently-selected cat to the object passed in
-    setActiveCat: function(cat) {
+    setActiveCat: function (cat) {
         model.activeCat = cat;
+    },
+
+    // Show or Hide Admin Mode
+    toggleAdminMode: function () {
+        if (model.adminMode) {
+            adminView.$adminForm.show();
+            model.adminMode = false;
+        } else {
+            adminView.$adminForm.hide();
+            model.adminMode = true;
+        }
+    },
+
+    // Hide Admin Mode
+    hideAdminMode: function () {
+        model.adminMode = false;
+        this.toggleAdminMode();
+    },
+
+    // Show Admin Mode
+    showAdminMode: function(){
+        model.adminMode = true;
+        this.toggleAdminMode();
     }
+
 };
 
 
@@ -112,7 +138,7 @@ var catListVeiw = {
             // make a new cat list item and set its text
             CatListItem = '<div id="cat' + i + '" class="cat-list-container cat-Btn cat-up">';
             CatListItem += '<h4 class="cat-name-list">' + cat.name + '</h4>';
-            CatListItem += '<img src="' + cat.imgSrc + '" />';
+            CatListItem += '<img src="' + cat.imgSrc + '" alt="Cat Image Not Found"/>';
             CatListItem += '</div>';
             $(".cats-list").append(CatListItem);
 
@@ -149,6 +175,16 @@ var catListVeiw = {
         }
     },
 };
+
+var adminView = {
+    init: function () {
+        this.$adminForm = $(".admin-form");
+
+        $(".admin-btn").on("click", octopus.toggleAdminMode);
+        
+        octopus.toggleAdminMode();
+    }
+}
 
 // make it go!
 octopus.init();
