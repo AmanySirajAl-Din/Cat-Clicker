@@ -11,6 +11,7 @@
     <div class="container">
         <div class="main-section cats-list">
             <h3>Choose Your Cat</h3>
+            <div class="cats-list-items"></div>
 
         </div>
         <div class="main-section show-cats">
@@ -34,12 +35,15 @@
                         <label>Cat image URL:</label>
                     </div>
                     <div class="main-section textboxes">
-                        <input type="text" placeholder="Enter cat's name here">
-                        <input type="text" placeholder="Enter cat's URL here" style="margin-top: 11px;">
+                        <input type="text" class="cat-name-TB" placeholder="Enter cat's name here">
+                        <label class="errorLabel errorName"></label>
+                        <input type="text" class="img-url-TB" placeholder="Enter cat's URL here" style="margin-top: 11px;">
+                        <label class="errorLabel errorURL"></label>
                     </div>
                     <div class="submit-Btns">
-                        <button class="save-btn" type="submit">Save</button>
-                        <button class="cancel-btn" type="submit">Cancel</button>
+                        <button class="save-btn" type="button">Save</button>
+                        <button class="reset-btn" type="button">Reset</button>
+                        <button class="cancel-btn" type="button">Cancel</button>
                     </div>
                 </form>
             </div>

@@ -82,13 +82,19 @@ var octopus = {
     // Hide Admin Mode
     hideAdminMode: function () {
         model.adminMode = false;
-        this.toggleAdminMode();
+        octopus.toggleAdminMode();
     },
 
     // Show Admin Mode
-    showAdminMode: function(){
+    showAdminMode: function () {
         model.adminMode = true;
-        this.toggleAdminMode();
+        octopus.toggleAdminMode();
+    },
+
+    // Add new Cat
+    addNewCat: function (newCat) {
+        model.catsObjArray.push(newCat);
+        catListVeiw.render();
     }
 
 };
@@ -130,7 +136,10 @@ var catListVeiw = {
         // first, I need the Model catsObjArray to render my list
         // So, Use octopus fun to make this connection
         var catsObjArray = octopus.getCatsObjArray();
-
+        
+        // clear the prev listed cats if found
+        $(".cats-list-items").html("");
+        
         // loop over the cats
         for (var i = 0; i < catsObjArray.length; i++) {
             // this is the cat we're currently looping over
@@ -140,7 +149,7 @@ var catListVeiw = {
             CatListItem += '<h4 class="cat-name-list">' + cat.name + '</h4>';
             CatListItem += '<img src="' + cat.imgSrc + '" alt="Cat Image Not Found"/>';
             CatListItem += '</div>';
-            $(".cats-list").append(CatListItem);
+            $(".cats-list-items").append(CatListItem);
 
             // on click, setCurrentCat and render the catView
             // (this uses our closure-in-a-loop trick to connect the value
@@ -179,10 +188,40 @@ var catListVeiw = {
 var adminView = {
     init: function () {
         this.$adminForm = $(".admin-form");
+        this.$catNameTB = $(".cat-name-TB");
+        this.$imgUrlTB = $(".img-url-TB");
+        this.$saveBtn = $(".save-btn");
+        this.$cancelBtn = $(".cancel-btn");
 
         $(".admin-btn").on("click", octopus.toggleAdminMode);
-        
+        $(".save-btn").on("click", function () {
+            $(".errorName").text("");
+            if ($(".cat-name-TB").val() != "" && $(".img-url-TB").val() != "") {
+                var newCat = {
+                    numOfClicks: 0,
+                    name: $(".cat-name-TB").val(),
+                    imgSrc: $(".img-url-TB").val()
+                }
+                octopus.addNewCat(newCat);
+                $(".cat-name-TB").val("");
+                $(".img-url-TB").val("");
+                
+            }else if($(".cat-name-TB").val() == ""){
+                $(".errorName").text("Please enter cat name");
+                
+            }else if($(".img-url-TB").val() == ""){
+                $(".errorURL").text("Please enter cat image URL");
+            }
+        });
+
+        $(".cancel-btn").on("click", octopus.hideAdminMode);
+        $(".reset-btn").on("click", adminView.reset);
+
         octopus.toggleAdminMode();
+    },
+    reset: function () {
+        $(".cat-name-TB").val("");
+        $(".img-url-TB").val("");
     }
 }
 
