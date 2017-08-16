@@ -225,6 +225,8 @@ var adminView = {
     reset: function () {
         $(".cat-name-TB").val("");
         $(".img-url-TB").val("");
+        $(".errorName").text("");
+        $(".errorURL").text("");
     }
 }
 
