@@ -136,10 +136,10 @@ var catListVeiw = {
         // first, I need the Model catsObjArray to render my list
         // So, Use octopus fun to make this connection
         var catsObjArray = octopus.getCatsObjArray();
-        
+
         // clear the prev listed cats if found
         $(".cats-list-items").html("");
-        
+
         // loop over the cats
         for (var i = 0; i < catsObjArray.length; i++) {
             // this is the cat we're currently looping over
@@ -205,12 +205,15 @@ var adminView = {
                 octopus.addNewCat(newCat);
                 $(".cat-name-TB").val("");
                 $(".img-url-TB").val("");
-                
-            }else if($(".cat-name-TB").val() == ""){
-                $(".errorName").text("Please enter cat name");
-                
-            }else if($(".img-url-TB").val() == ""){
-                $(".errorURL").text("Please enter cat image URL");
+
+            } else {
+                if ($(".cat-name-TB").val() == "") {
+                    $(".errorName").text("Please enter cat name");
+
+                }
+                if ($(".img-url-TB").val() == "") {
+                    $(".errorURL").text("Please enter cat image URL");
+                }
             }
         });
 
