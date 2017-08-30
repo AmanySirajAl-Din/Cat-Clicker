@@ -11,16 +11,16 @@ Description:-
 * On master branch:
 First, it was an app to count the number of clicks for a single cat photo,
 then for 2 cat photos,
-then to count the number of clickes for each cat in a list
+then to count the number of clicks for each cat in a list
 
 * Then on apply_MVO branch
 To make my code professional and organized use:
 MVO (Model View Octopus)
 
-The Final Changed Requirment:
+The Final Changed Requirements:
 
 Add Admin mode
-By it you can add new cats
+By it, you can add new cats
 
 Terms:-
 MVO (Model View Octopus)
